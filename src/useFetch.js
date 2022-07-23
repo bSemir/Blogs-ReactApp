@@ -7,10 +7,13 @@ const useFetch = (url) => {
 
 
     useEffect(() => {
-        setTimeout(() => { {/* just simaluting request taking a bit longer */ }
-            fetch(url).then(res => {
+        const abortCont = new AbortController();
+
+        setTimeout(() => {
+            //we need to associate abortcontroller with fetch func so we can stop it
+            fetch(url, { signal: abortCont.signal }).then(res => {
                 //console.log(res);
-                if(!res.ok){
+                if (!res.ok) {
                     throw Error('Could not fetch the data');
                 }
                 return res.json(); //this is also async
@@ -19,11 +22,18 @@ const useFetch = (url) => {
                 setIsPending(false);
                 setError(null);
             }).catch((err) => {
-                setIsPending(false);
-                setError(err.message);
+                if (err.name === 'AbortError') {
+                    console.log('fetch aborted');
+                }
+                else {
+                    setIsPending(false);
+                    setError(err.message);
+                }
             })
         }, 1000);
-    }, [url]); //whenever url changes, it is going to call this useEffect state
+
+        return () => abortCont.abort(); //cleanup 
+    }, [url]);
 
     return { data, isPending, error }
 }
