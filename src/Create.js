@@ -49,6 +49,7 @@ const Create = () => {
                 <select value={author} onChange={(e) => setAuthor(e.target.value)}>
                     <option value="mario">mario</option>
                     <option value="yoshi">yoshi</option>
+                    <option value="semir">semir</option>
                 </select>
                 { !isPending && <button>Add blog</button> }
                 {/* mozda dodati timeout? */}
