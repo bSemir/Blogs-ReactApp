@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## 
+I've deployed this application on gh pages but it only works locally 'cause it uses "custom server(json server)" for its data
+# 
+Link: https://bSemir.github.io/Blogs-ReactApp
